@@ -1,6 +1,6 @@
 {
     "cmake.configureOnOpen": true,
-    "cmake.generator": "Visual Studio 17 2022",
+    "cmake.generator": "Ninja",
     "cmake.configurePreset": "x64-debug",
     "cmake.buildPreset": "x64-debug",
     "cmake.buildDirectory": "${workspaceFolder}/out/build/x64-debug",
