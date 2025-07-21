@@ -5,5 +5,9 @@
       "Bash(ninja:*)"
     ],
     "deny": []
-  }
+  },
+  "enabledMcpjsonServers": [
+    "github"
+  ],
+  "enableAllProjectMcpServers": true
 }
