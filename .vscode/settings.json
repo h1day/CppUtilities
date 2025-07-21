@@ -8,5 +8,12 @@
         "*.h": "cpp",
         "*.cpp": "cpp"
     },
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+
+
+    "markdownlint.config": {
+        "MD022": false,
+        "MD031": false,
+        "MD032": false
+    }
 }
