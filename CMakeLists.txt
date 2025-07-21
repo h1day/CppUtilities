@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : CppUtilities の CMake プロジェクト。ソースを含めて、次を定義します:
 # プロジェクト専用ロジックはこちらです。
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.20)
 
 # サポートされている場合は、MSVC コンパイラのホット リロードを有効にします。
 if (POLICY CMP0141)
