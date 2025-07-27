@@ -1,15 +1,26 @@
 {
     "cmake.configureOnOpen": true,
-    "cmake.generator": "Ninja",
-    "cmake.configurePreset": "x64-debug",
-    "cmake.buildPreset": "x64-debug",
-    "cmake.buildDirectory": "${workspaceFolder}/out/build/x64-debug",
+    "cmake.useCMakePresets": "always",
     "files.associations": {
         "*.h": "cpp",
         "*.cpp": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-
+    "cmake.options.statusBarVisibility": "visible",
+    // "cmake.options.advanced": {
+    //     "debug": {
+    //         "statusBarVisibility": "hidden"
+    //     },
+    //     "launch": {
+    //         "statusBarVisibility": "hidden"
+    //     },
+    //     "build": {
+    //         "statusBarVisibility": "hidden"
+    //     },
+    //     "buildTarget": {
+    //         "statusBarVisibility": "hidden"
+    //     }
+    // },
 
     "markdownlint.config": {
         "MD022": false,
