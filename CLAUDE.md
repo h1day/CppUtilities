@@ -20,10 +20,12 @@ cmake --preset x64-debug
 cmake --build out/build/x64-debug --config Debug
 
 # VS Code tasks (Ctrl+Shift+P → Tasks: Run Task)
-- "Build Debug" (default)
-- "Build Release" 
+- "Build Debug" (default, depends on Configure Debug)
+- "Build Release" (depends on Configure Release) 
 - "Configure Debug"
-- "Clean"
+- "Configure Release"
+- "Clean Debug"
+- "Clean Release"
 ```
 
 ## Architecture Notes
@@ -35,14 +37,17 @@ cmake --build out/build/x64-debug --config Debug
 
 ## Development Workflow
 1. Environment setup is critical - always use Native Tools Command Prompt
-2. CMake presets (x64-debug/x64-release) are configured for consistent builds
-3. VS Code debugging configured with cppvsdbg for Windows
-4. Japanese documentation in README.md indicates possible i18n considerations
+2. CMake presets (x64-debug/x64-release) with optimized MSVC flags (/EHsc /W4, /O2 for release)
+3. VS Code debugging configured with cppvsdbg for Windows, automatic build dependencies
+4. IntelliSense powered by CMAKE_EXPORT_COMPILE_COMMANDS=ON and cmake-tools
+5. Japanese documentation in README.md indicates possible i18n considerations
 
 ## Key Files
-- `CMakePresets.json`: Defines x64-debug/release configurations with Ninja generator
+- `CMakePresets.json`: Defines x64-debug/release configurations with Ninja generator, MSVC optimizations
 - `CppUtilities.h`: Main header with `#pragma once`, includes `<iostream>`
-- `.vscode/`: Complete VS Code integration (CMake Tools, debug config, tasks)
+- `.vscode/settings.json`: CMake Tools integration, presets auto-use, no manual file associations
+- `.vscode/tasks.json`: Build tasks with dependsOn relationships, MSVC problem matcher
+- `.vscode/launch.json`: Debug/Release launch configurations with preLaunchTask
 
 ## Testing Status
 No testing framework currently implemented. CMakeLists.txt has TODO comment for adding tests (line 21).
