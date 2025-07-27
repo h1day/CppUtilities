@@ -5,7 +5,10 @@
       "Bash(ninja:*)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:cmake.org)",
-      "WebFetch(domain:code.visualstudio.com)"
+      "WebFetch(domain:code.visualstudio.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:www.jetbrains.com)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": []
   },
