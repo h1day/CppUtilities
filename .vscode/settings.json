@@ -1,7 +1,16 @@
 {
     "cmake.configureOnOpen": true,
     "cmake.useCMakePresets": "always",
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    
+    // clangd configuration
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.path": "clangd.exe",
+    "clangd.arguments": [
+        "--compile-commands-dir=out/build/x64-debug",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed"
+    ],
 
     "markdownlint.config": {
         "MD022": false,
