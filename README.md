@@ -50,14 +50,18 @@ VS Codeでタスクを実行する方法：
    - `Ctrl+Shift+P` → `Tasks: Run Build Task` (デフォルトビルドタスク)
 
 3. **利用可能なタスク**
-   - `Build Debug` - デバッグビルド実行
-   - `Build Release` - リリースビルド実行  
+   - `Build Debug` - デバッグビルド実行（デフォルト、Configure Debug自動実行）
+   - `Build Release` - リリースビルド実行（Configure Release自動実行）  
    - `Configure Debug` - デバッグ設定
-   - `Clean` - ビルドファイルクリーンアップ
+   - `Configure Release` - リリース設定
+   - `Clean Debug` - デバッグビルドファイルクリーンアップ
+   - `Clean Release` - リリースビルドファイルクリーンアップ
 
 #### デバッグ
-- `F5`でデバッグ実行
+- `F5`でデバッグ実行（自動的にBuild Debugが実行される）
+- Debug/Release両方の起動設定が利用可能
 - ブレークポイント設定可能
+- 外部ターミナルでの実行
 
 ### プロジェクト構成
 ```plaintext
@@ -67,9 +71,9 @@ CppUtilities/
 ├── CppUtilities.cpp        # メインソースファイル
 ├── CppUtilities.h          # ヘッダーファイル
 ├── .vscode/
-│   ├── settings.json       # VS Code CMake設定
-│   ├── launch.json         # デバッグ設定
-│   └── tasks.json          # ビルドタスク設定
+│   ├── settings.json       # VS Code CMake設定（プリセット自動使用）
+│   ├── launch.json         # デバッグ設定（Debug/Release対応）
+│   └── tasks.json          # ビルドタスク設定（依存関係設定済み）
 └── out/build/              # ビルド出力ディレクトリ
 ```
 
