@@ -3,7 +3,9 @@
     "allow": [
       "Bash(cmake:*)",
       "Bash(ninja:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:cmake.org)",
+      "WebFetch(domain:code.visualstudio.com)"
     ],
     "deny": []
   },

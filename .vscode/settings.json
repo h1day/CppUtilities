@@ -1,10 +1,6 @@
 {
     "cmake.configureOnOpen": true,
     "cmake.useCMakePresets": "always",
-    "files.associations": {
-        "*.h": "cpp",
-        "*.cpp": "cpp"
-    },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 
     "markdownlint.config": {
