@@ -46,3 +46,17 @@ cmake --build out/build/x64-debug --config Debug
 
 ## Testing Status
 No testing framework currently implemented. CMakeLists.txt has TODO comment for adding tests (line 21).
+
+## Code Modification Guidelines
+**IMPORTANT: Always verify technical claims before making changes:**
+- Use WebFetch to check official documentation for compiler flags, build settings, etc.
+- Don't assume "common knowledge" - verify Microsoft/CMake/C++ documentation
+- When removing or adding compiler flags, always check the official reference first
+- For MSVC flags: https://learn.microsoft.com/en-us/cpp/build/reference/
+- For CMake: https://cmake.org/documentation/
+
+**Research-first approach:**
+1. Before suggesting changes, research the current behavior
+2. Verify default values and recommended practices
+3. Check for platform-specific differences
+4. Only then propose modifications with evidence

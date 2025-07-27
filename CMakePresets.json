@@ -9,7 +9,8 @@
             "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe"
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             },
             "condition": {
                 "type": "equals",
@@ -19,7 +20,7 @@
         },
         {
             "name": "x64-debug",
-            "displayName": "x64 Debug",
+            "displayName": "Debug (x64)",
             "inherits": "windows-base",
             "architecture": {
                 "value": "x64",
@@ -27,16 +28,20 @@
             },
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_CXX_FLAGS_DEBUG": "/EHsc"
+                "CMAKE_CXX_FLAGS": "/EHsc /W4"
             }
         },
         {
             "name": "x64-release",
-            "displayName": "x64 Release",
-            "inherits": "x64-debug",
+            "displayName": "Release (x64)",
+            "inherits": "windows-base",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_CXX_FLAGS_RELEASE": "/EHsc"
+                "CMAKE_CXX_FLAGS": "/EHsc /W4 /O2"
             }
         }
     ],
