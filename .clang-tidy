@@ -1,0 +1,37 @@
+---
+Checks: >
+  *,
+  -abseil-*,
+  -altera-*,
+  -fuchsia-*,
+  -google-*,
+  -llvm-*,
+  -zircon-*,
+  performance-*,
+  readability-*,
+  modernize-*,
+  cppcoreguidelines-*,
+  -modernize-use-trailing-return-type,
+  -readability-magic-numbers,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-identifier-length,
+  -modernize-use-nodiscard,
+  -cppcoreguidelines-avoid-do-while,
+  -readability-convert-member-functions-to-static,
+  -modernize-use-auto
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+FormatStyle: file
+CheckOptions:
+  - key: readability-function-cognitive-complexity.Threshold
+    value: '25'
+  - key: readability-function-size.LineThreshold
+    value: '80'
+  - key: cppcoreguidelines-pro-bounds-constant-array-index.GslHeader
+    value: ''
+  - key: modernize-loop-convert.MaxCopySize
+    value: '16'
+  - key: modernize-loop-convert.MinConfidence
+    value: reasonable
+  - key: modernize-use-nullptr.NullMacros
+    value: 'NULL'
