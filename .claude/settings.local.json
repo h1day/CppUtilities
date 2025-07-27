@@ -2,12 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(cmake:*)",
-      "Bash(ninja:*)"
+      "Bash(ninja:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:cmake.org)",
+      "WebFetch(domain:code.visualstudio.com)"
     ],
     "deny": []
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "github"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
