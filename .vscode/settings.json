@@ -6,21 +6,6 @@
         "*.cpp": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-    "cmake.options.statusBarVisibility": "visible",
-    // "cmake.options.advanced": {
-    //     "debug": {
-    //         "statusBarVisibility": "hidden"
-    //     },
-    //     "launch": {
-    //         "statusBarVisibility": "hidden"
-    //     },
-    //     "build": {
-    //         "statusBarVisibility": "hidden"
-    //     },
-    //     "buildTarget": {
-    //         "statusBarVisibility": "hidden"
-    //     }
-    // },
 
     "markdownlint.config": {
         "MD022": false,
