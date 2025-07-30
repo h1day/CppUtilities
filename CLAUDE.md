@@ -39,13 +39,16 @@ cmake --build out/build/x64-debug --config Debug
 1. Environment setup is critical - always use Native Tools Command Prompt
 2. CMake presets (x64-debug/x64-release) with optimized MSVC flags (/EHsc /W4, /O2 for release)
 3. VS Code debugging configured with cppvsdbg for Windows, automatic build dependencies
-4. IntelliSense powered by CMAKE_EXPORT_COMPILE_COMMANDS=ON and cmake-tools
-5. Japanese documentation in README.md indicates possible i18n considerations
+4. IntelliSense powered by clangd with CMAKE_EXPORT_COMPILE_COMMANDS=ON
+5. Code quality enforced by clang-tidy with ReSharper-compatible rules
+6. Japanese documentation in README.md indicates possible i18n considerations
 
 ## Key Files
 - `CMakePresets.json`: Defines x64-debug/release configurations with Ninja generator, MSVC optimizations
 - `CppUtilities.h`: Main header with `#pragma once`, includes `<iostream>`
-- `.vscode/settings.json`: CMake Tools integration, presets auto-use, no manual file associations
+- `.clang-tidy`: Code quality rules compatible with ReSharper C++
+- `.clang-format`: Code formatting rules (LLVM-based with custom tweaks)
+- `.vscode/settings.json`: clangd configuration with Microsoft C++ IntelliSense disabled
 - `.vscode/tasks.json`: Build tasks with dependsOn relationships, MSVC problem matcher
 - `.vscode/launch.json`: Debug/Release launch configurations with preLaunchTask
 
@@ -65,3 +68,16 @@ No testing framework currently implemented. CMakeLists.txt has TODO comment for 
 2. Verify default values and recommended practices
 3. Check for platform-specific differences
 4. Only then propose modifications with evidence
+
+## ReSharper C++ Integration
+**VS Code Environment Mirrors Visual Studio Quality:**
+- clangd provides equivalent IntelliSense performance to ReSharper C++
+- .clang-tidy rules maintain same code quality standards across both IDEs
+- Claude Code can detect and analyze clangd diagnostics for enhanced code assistance
+- Shared configuration files (.clang-tidy, .clang-format) ensure consistent coding standards
+
+**clangd Configuration:**
+- Microsoft C++ IntelliSense disabled to avoid conflicts
+- Function argument placeholders disabled for efficient coding
+- Real-time clang-tidy integration for immediate feedback
+- IWYU (Include What You Use) header management

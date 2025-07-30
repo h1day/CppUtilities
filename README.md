@@ -31,8 +31,9 @@ code "C:\work\CppUtilities"
 
 #### VS Code拡張機能
 以下の拡張機能をインストール：
-- C/C++ (Microsoft)
+- C/C++ (Microsoft) - デバッグ用（IntelliSenseは無効）
 - CMake Tools (Microsoft)
+- clangd (LLVM) - 高性能IntelliSense・コード解析
 
 #### ビルド手順
 1. VS Codeでプロジェクトフォルダを開く
@@ -70,8 +71,10 @@ CppUtilities/
 ├── CMakePresets.json       # CMakeプリセット定義
 ├── CppUtilities.cpp        # メインソースファイル
 ├── CppUtilities.h          # ヘッダーファイル
+├── .clang-format           # コードフォーマット設定
+├── .clang-tidy             # コード品質チェック設定
 ├── .vscode/
-│   ├── settings.json       # VS Code CMake設定（プリセット自動使用）
+│   ├── settings.json       # VS Code clangd設定
 │   ├── launch.json         # デバッグ設定（Debug/Release対応）
 │   └── tasks.json          # ビルドタスク設定（依存関係設定済み）
 └── out/build/              # ビルド出力ディレクトリ
@@ -80,3 +83,38 @@ CppUtilities/
 ### ビルド出力
 - デバッグ版: `out/build/x64-debug/CppUtilities.exe`
 - リリース版: `out/build/x64-release/CppUtilities.exe`
+
+## ReSharper C++ 連携
+
+### 概要
+Visual StudioのReSharper C++と同等のコード品質チェックをVS Codeで実現できます。
+
+### 設定内容
+- **clangd**: Microsoft C++ IntelliSenseに代わる高性能言語サーバー
+- **clang-tidy**: ReSharper C++と同等のコード検査ルール
+- **Claude Code連携**: エディタ上の警告をリアルタイムで検出・活用
+
+### 利用方法
+1. **自動有効化**: プロジェクトを開くとclangdが自動起動
+2. **リアルタイム検査**: コード入力時に警告が表示
+3. **修正提案**: 一部の問題は自動修正可能（💡アイコン）
+4. **Claude Code統合**: AI支援でコード品質向上
+
+### ReSharper設定共有
+- `.clang-tidy`: コード品質チェックルール
+- `.clang-format`: コードフォーマット設定
+- Visual StudioとVS Codeで同一基準のコード品質管理
+
+### 検出される警告例
+- `Use nullptr` instead of NULL
+- `Use '\n'` instead of endl  
+- 未使用変数の検出
+- 関数のstatic化提案
+- モダンC++構文の推奨
+- パフォーマンス改善提案
+
+### clangd機能
+- **高速IntelliSense**: 定義ジャンプ・参照検索が瞬時
+- **正確な補完**: リアルパーサーによる高精度補完
+- **引数プレースホルダー無効**: 効率的なコーディング
+- **IWYU統合**: 不要ヘッダー検出
