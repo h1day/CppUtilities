@@ -11,7 +11,7 @@
                 "isDefault": true
             },
             "dependsOn": "Configure Debug",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$gcc"
         },
         {
             "label": "Build Release",
@@ -20,7 +20,7 @@
             "preset": "x64-release",
             "group": "build",
             "dependsOn": "Configure Release",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$gcc"
         },
         {
             "label": "Configure Debug",
