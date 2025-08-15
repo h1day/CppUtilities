@@ -17,5 +17,15 @@
         "MD031": false,
         "MD032": false,
         "MD047": false
-    }
+    },
+    "cSpell.words": [
+        "cppcoreguidelines",
+        "findstr",
+        "Mcpjson",
+        "MSVC",
+        "nodiscard",
+        "nullptr",
+        "repomix",
+        "tasklist"
+    ]
 }
