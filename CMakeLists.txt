@@ -50,5 +50,8 @@ if(TARGET CppUTestExt)
     )
 endif()
 
+# CTest を有効化
+enable_testing()
+
 # テスト用のサブディレクトリを追加
 add_subdirectory(tests)

@@ -24,5 +24,4 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
 endif()
 
 # CTest でのテスト登録
-enable_testing()
 add_test(NAME CppUtilities_UnitTests COMMAND CppUtilities_tests)
