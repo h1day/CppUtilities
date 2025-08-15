@@ -27,5 +27,10 @@
         "nullptr",
         "repomix",
         "tasklist"
-    ]
+    ],
+
+    // CppUTest Test Adapter configuration
+    "cpputestTestAdapter.testExecutable": "${workspaceFolder}/out/build/x64-debug/tests/CppUtilities_tests.exe",
+    "cpputestTestAdapter.testExecutablePath": "${workspaceFolder}/out/build/x64-debug/tests",
+    "cpputestTestAdapter.preLaunchTask": "Build Debug"
 }
