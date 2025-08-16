@@ -1,4 +1,5 @@
 # テスト用の CMakeLists.txt
+# CppUTestの自動テスト検出機能付き
 
 # テストファイルを収集
 file(GLOB TEST_SOURCES "*.cpp")
@@ -23,5 +24,87 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET CppUtilities_tests PROPERTY CXX_STANDARD 20)
 endif()
 
-# CTest でのテスト登録
-add_test(NAME CppUtilities_UnitTests COMMAND CppUtilities_tests)
+# テスト自動検出用のヘルパー関数
+function(discover_cpputest_tests)
+    # ビルド完了後に自動検出スクリプトを実行
+    add_custom_command(
+        TARGET CppUtilities_tests POST_BUILD
+        COMMAND ${CMAKE_COMMAND} 
+            -DTEST_EXECUTABLE=$<TARGET_FILE:CppUtilities_tests>
+            -DOUTPUT_FILE=${CMAKE_CURRENT_BINARY_DIR}/DiscoveredTests.cmake
+            -P ${CMAKE_SOURCE_DIR}/cmake/CppUTestDiscovery.cmake
+        COMMENT "Auto-discovering CppUTest tests"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    )
+endfunction()
+
+# テストディスカバリー実行  
+discover_cpputest_tests()
+
+# CTest でのテスト登録 - 真の自動検出実装
+
+# 全体テスト実行（常に利用可能）
+add_test(NAME AllTests COMMAND CppUtilities_tests)
+
+# ビルド時に自動検出されたテストを含める
+set(DISCOVERED_TESTS_FILE "${CMAKE_CURRENT_BINARY_DIR}/DiscoveredTests.cmake")
+if(EXISTS "${DISCOVERED_TESTS_FILE}")
+    include("${DISCOVERED_TESTS_FILE}")
+    message(STATUS "Including auto-discovered tests from ${DISCOVERED_TESTS_FILE}")
+else()
+    # フォールバック：手動でテストを登録
+    message(STATUS "Auto-discovery not available, using manual test registration")
+    
+    # 個別テストグループの登録
+    add_test(NAME CppUtilitiesBasicTests 
+             COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests)
+
+    add_test(NAME AlphaTestGroup 
+             COMMAND CppUtilities_tests -sg AlphaTestGroup)
+
+    add_test(NAME BetaTestGroup 
+             COMMAND CppUtilities_tests -sg BetaTestGroup)
+
+    # 個別テストケースの登録（主要なテスト）
+    add_test(NAME BasicMathTest 
+             COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests -sn BasicMathTest)
+
+    add_test(NAME StringTest 
+             COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests -sn StringTest)
+
+    add_test(NAME OutputTest 
+             COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests -sn OutputTest)
+
+    add_test(NAME StringTransformationTest 
+             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn StringTransformationTest)
+
+    add_test(NAME StringSearchTest 
+             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn StringSearchTest)
+
+    add_test(NAME VectorOperationTest 
+             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn VectorOperationTest)
+
+    add_test(NAME StringSplitTest 
+             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn StringSplitTest)
+
+    add_test(NAME AlgorithmFindIfTest 
+             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn AlgorithmFindIfTest)
+
+    add_test(NAME MathFunctionsTest 
+             COMMAND CppUtilities_tests -sg BetaTestGroup -sn MathFunctionsTest)
+
+    add_test(NAME VectorAccumulateTest 
+             COMMAND CppUtilities_tests -sg BetaTestGroup -sn VectorAccumulateTest)
+
+    add_test(NAME MapOperationsTest 
+             COMMAND CppUtilities_tests -sg BetaTestGroup -sn MapOperationsTest)
+
+    add_test(NAME SetOperationsTest 
+             COMMAND CppUtilities_tests -sg BetaTestGroup -sn SetOperationsTest)
+
+    add_test(NAME QueueStackTest 
+             COMMAND CppUtilities_tests -sg BetaTestGroup -sn QueueStackTest)
+
+    add_test(NAME FloatingPointCalculationTest 
+             COMMAND CppUtilities_tests -sg BetaTestGroup -sn FloatingPointCalculationTest)
+endif()
