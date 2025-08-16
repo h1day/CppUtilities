@@ -16,16 +16,28 @@
         "MD022": false,
         "MD031": false,
         "MD032": false,
-        "MD047": false
+        "MD047": true
     },
     "cSpell.words": [
         "cppcoreguidelines",
+        "cpputest",
+        "ctest",
         "findstr",
         "Mcpjson",
         "MSVC",
+        "Neumann",
         "nodiscard",
         "nullptr",
         "repomix",
         "tasklist"
-    ]
+    ],
+
+    // CppUTest Test Adapter configuration
+    "cpputestTestAdapter.testExecutable": "${workspaceFolder}/out/build/x64-debug/tests/CppUtilities_tests.exe",
+    "cpputestTestAdapter.testExecutablePath": "${workspaceFolder}/out/build/x64-debug/tests",
+    "cpputestTestAdapter.preLaunchTask": "Build Debug",
+
+    // CMake Tools settings - CTest統合を無効化
+    "cmake.buildBeforeRun": false,
+    "cmake.ctest.parallelJobs": 0
 }

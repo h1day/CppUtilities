@@ -33,6 +33,7 @@ code "C:\work\CppUtilities"
 以下の拡張機能をインストール：
 - C/C++ (Microsoft)
 - CMake Tools (Microsoft)
+- CppUTest Test Adapter (Benjamin Neumann) - テスト実行・デバッグ用
 
 #### ビルド手順
 1. VS Codeでプロジェクトフォルダを開く
@@ -52,6 +53,7 @@ VS Codeでタスクを実行する方法：
 3. **利用可能なタスク**
    - `Build Debug` - デバッグビルド実行（デフォルト、Configure Debug自動実行）
    - `Build Release` - リリースビルド実行（Configure Release自動実行）  
+   - `Build Tests` - テストのみビルド実行
    - `Configure Debug` - デバッグ設定
    - `Configure Release` - リリース設定
    - `Clean Debug` - デバッグビルドファイルクリーンアップ
@@ -63,20 +65,113 @@ VS Codeでタスクを実行する方法：
 - ブレークポイント設定可能
 - 外部ターミナルでの実行
 
+## テスト
+
+このプロジェクトはCppUTestフレームワークを使用してユニットテストを実装しています。
+
+### テスト構成
+```plaintext
+tests/
+├── CMakeLists.txt           # テスト用CMake設定
+├── test_main.cpp            # CppUTestテストランナー
+└── test_utilities.cpp       # 基本的なテストケース
+```
+
+### テスト実行方法
+
+#### 1. コマンドライン実行
+```bash
+# プロジェクトビルド（テストも含む）
+cmake --preset x64-debug
+cmake --build out/build/x64-debug --config Debug
+
+# 直接テスト実行
+out/build/x64-debug/tests/CppUtilities_tests.exe
+
+# CTest経由でのテスト実行
+cd out/build/x64-debug
+ctest --verbose
+```
+
+#### 2. VS Code Test Explorer
+1. **CppUTest Test Adapter拡張機能**をインストール
+2. VS CodeのTestingパネル（左側のテストアイコン）を開く
+3. テストが自動検出され、階層表示される
+4. 個別テストまたはグループ単位での実行が可能
+5. テスト結果がリアルタイムで表示される
+
+**テスト検出の仕組み:**
+- アダプターは設定された`preLaunchTask`（Build Debug）を実行してテスト実行ファイルをビルド
+- ビルド後、`CppUtilities_tests.exe -ll`コマンドでテスト一覧を取得
+- 取得したテスト情報をもとにTest Explorerで階層表示（テストグループ→個別テスト）
+- テスト実行時は`-g <グループ名> -n <テスト名>`引数で特定テストを実行
+
+`-ll`オプションの出力例：
+```bash
+CppUtilitiesBasicTests.OutputTest.C:\work\CppUtilities\tests\test_utilities.cpp.38
+CppUtilitiesBasicTests.StringTest.C:\work\CppUtilities\tests\test_utilities.cpp.28
+CppUtilitiesBasicTests.BasicMathTest.C:\work\CppUtilities\tests\test_utilities.cpp.21
+```
+形式: `テストグループ.テスト名.ファイルパス.行番号`
+
+#### 3. VS Codeデバッグ実行
+`F5` → デバッグ設定を選択：
+
+- **(Windows) Debug Tests** - 全テストをデバッグ実行
+- **(Windows) Debug Single Test** - 特定テストをデバッグ実行
+  - 実行時にテストグループ名とテスト名を入力プロンプトで指定
+
+#### 4. CppUTestコマンドライン引数
+CppUTestの主要なコマンドライン引数：
+```bash
+# テスト一覧を表示（Test Adapterが使用）
+CppUtilities_tests.exe -ll
+
+# 特定のテストグループのみ実行
+CppUtilities_tests.exe -g CppUtilitiesBasicTests
+
+# 特定のテストのみ実行  
+CppUtilities_tests.exe -g CppUtilitiesBasicTests -n BasicMathTest
+
+# 詳細出力
+CppUtilities_tests.exe -v
+
+# すべてのオプション表示
+CppUtilities_tests.exe -h
+```
+
+### 現在のテストケース
+- **BasicMathTest** - 基本的な数学演算のテスト
+- **StringTest** - 文字列操作のテスト
+- **OutputTest** - 標準出力のテスト（リダイレクト検証）
+
+### 新しいテストの追加
+1. `tests/test_utilities.cpp`にテストケースを追加
+2. CppUTestの`TEST_GROUP`と`TEST`マクロを使用
+3. ビルド後、自動的にTest Explorerに反映される
+
 ### プロジェクト構成
 ```plaintext
 CppUtilities/
-├── CMakeLists.txt          # CMakeビルド設定
+├── CMakeLists.txt          # CMakeビルド設定（CppUTest統合済み）
 ├── CMakePresets.json       # CMakeプリセット定義
 ├── CppUtilities.cpp        # メインソースファイル
 ├── CppUtilities.h          # ヘッダーファイル
+├── tests/                  # テストディレクトリ
+│   ├── CMakeLists.txt      # テスト用CMake設定
+│   ├── test_main.cpp       # CppUTestテストランナー
+│   └── test_utilities.cpp  # テストケース実装
 ├── .vscode/
-│   ├── settings.json       # VS Code CMake設定（プリセット自動使用）
-│   ├── launch.json         # デバッグ設定（Debug/Release対応）
-│   └── tasks.json          # ビルドタスク設定（依存関係設定済み）
+│   ├── settings.json       # VS Code設定（CMake + CppUTest Adapter）
+│   ├── launch.json         # デバッグ設定（テストデバッグ含む）
+│   └── tasks.json          # ビルドタスク設定（テストビルド含む）
 └── out/build/              # ビルド出力ディレクトリ
+    └── x64-debug/tests/    # テスト実行ファイル
 ```
 
 ### ビルド出力
-- デバッグ版: `out/build/x64-debug/CppUtilities.exe`
-- リリース版: `out/build/x64-release/CppUtilities.exe`
+- **メインプログラム**:
+  - デバッグ版: `out/build/x64-debug/CppUtilities.exe`
+  - リリース版: `out/build/x64-release/CppUtilities.exe`
+- **テスト実行ファイル**:
+  - デバッグ版: `out/build/x64-debug/tests/CppUtilities_tests.exe`

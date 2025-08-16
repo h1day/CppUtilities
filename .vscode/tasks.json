@@ -45,6 +45,16 @@
             "type": "cmake",
             "command": "clean",
             "preset": "x64-release"
+        },
+        {
+            "label": "Build Tests",
+            "type": "cmake",
+            "command": "build",
+            "preset": "x64-debug",
+            "args": ["--target", "CppUtilities_tests"],
+            "group": "build",
+            "dependsOn": "Configure Debug",
+            "problemMatcher": "$gcc"
         }
     ]
 }
