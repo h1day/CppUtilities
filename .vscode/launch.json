@@ -24,6 +24,44 @@
       "environment": [],
       "console": "externalTerminal",
       "preLaunchTask": "Build Release"
+    },
+    {
+      "name": "(Windows) Debug Tests",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/out/build/x64-debug/tests/CppUtilities_tests.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/out/build/x64-debug/tests",
+      "environment": [],
+      "console": "externalTerminal",
+      "preLaunchTask": "Build Tests"
+    },
+    {
+      "name": "(Windows) Debug Single Test",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/out/build/x64-debug/tests/CppUtilities_tests.exe",
+      "args": ["-g", "${input:testGroup}", "-n", "${input:testName}"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/out/build/x64-debug/tests",
+      "environment": [],
+      "console": "externalTerminal",
+      "preLaunchTask": "Build Tests"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "testGroup",
+      "description": "テストグループ名を入力 (例: CppUtilitiesBasicTests)",
+      "default": "CppUtilitiesBasicTests",
+      "type": "promptString"
+    },
+    {
+      "id": "testName", 
+      "description": "テスト名を入力 (例: BasicMathTest)",
+      "default": "BasicMathTest",
+      "type": "promptString"
     }
   ]
 }

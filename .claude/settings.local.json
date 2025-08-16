@@ -16,7 +16,9 @@
       "mcp__serena__read_file",
       "mcp__serena__find_file",
       "mcp__serena__execute_shell_command",
-      "mcp__serena__write_memory"
+      "mcp__serena__write_memory",
+      "mcp__repomix__grep_repomix_output",
+      "Bash(out/build/x64-debug/tests/CppUtilities_tests.exe:*)"
     ],
     "deny": []
   },
