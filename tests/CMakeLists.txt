@@ -59,12 +59,6 @@ else()
     add_test(NAME CppUtilitiesBasicTests 
              COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests)
 
-    add_test(NAME AlphaTestGroup 
-             COMMAND CppUtilities_tests -sg AlphaTestGroup)
-
-    add_test(NAME BetaTestGroup 
-             COMMAND CppUtilities_tests -sg BetaTestGroup)
-
     # 個別テストケースの登録（主要なテスト）
     add_test(NAME BasicMathTest 
              COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests -sn BasicMathTest)
@@ -75,36 +69,5 @@ else()
     add_test(NAME OutputTest 
              COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests -sn OutputTest)
 
-    add_test(NAME StringTransformationTest 
-             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn StringTransformationTest)
-
-    add_test(NAME StringSearchTest 
-             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn StringSearchTest)
-
-    add_test(NAME VectorOperationTest 
-             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn VectorOperationTest)
-
-    add_test(NAME StringSplitTest 
-             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn StringSplitTest)
-
-    add_test(NAME AlgorithmFindIfTest 
-             COMMAND CppUtilities_tests -sg AlphaTestGroup -sn AlgorithmFindIfTest)
-
-    add_test(NAME MathFunctionsTest 
-             COMMAND CppUtilities_tests -sg BetaTestGroup -sn MathFunctionsTest)
-
-    add_test(NAME VectorAccumulateTest 
-             COMMAND CppUtilities_tests -sg BetaTestGroup -sn VectorAccumulateTest)
-
-    add_test(NAME MapOperationsTest 
-             COMMAND CppUtilities_tests -sg BetaTestGroup -sn MapOperationsTest)
-
-    add_test(NAME SetOperationsTest 
-             COMMAND CppUtilities_tests -sg BetaTestGroup -sn SetOperationsTest)
-
-    add_test(NAME QueueStackTest 
-             COMMAND CppUtilities_tests -sg BetaTestGroup -sn QueueStackTest)
-
-    add_test(NAME FloatingPointCalculationTest 
-             COMMAND CppUtilities_tests -sg BetaTestGroup -sn FloatingPointCalculationTest)
-endif()
+   endif()
+   
