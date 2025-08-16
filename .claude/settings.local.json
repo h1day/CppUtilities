@@ -20,7 +20,8 @@
       "mcp__repomix__grep_repomix_output",
       "Bash(out/build/x64-debug/tests/CppUtilities_tests.exe:*)",
       "mcp__serena__read_memory",
-      "mcp__repomix__pack_codebase"
+      "mcp__repomix__pack_codebase",
+      "mcp__serena__create_text_file"
     ],
     "deny": []
   },
