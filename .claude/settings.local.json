@@ -30,10 +30,10 @@
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
-    "github",
+    "deepwiki",
     "repomix",
     "serena",
-    "travel",
+    "sequential-thinking",
     "context7"
   ]
 }
