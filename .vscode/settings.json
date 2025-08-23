@@ -36,10 +36,13 @@
 
     // CppUTest Test Adapter configuration
     "cpputestTestAdapter.testExecutable": "${workspaceFolder}/out/build/x64-debug/tests/CppUtilities_tests.exe",
-    "cpputestTestAdapter.testExecutablePath": "${workspaceFolder}/out/build/x64-debug/tests",
+    "cpputestTestAdapter.testExecutablePath": "${workspaceFolder}",
     "cpputestTestAdapter.preLaunchTask": "Build Debug",
+    "cpputestTestAdapter.logpanel": true,
+    "cpputestTestAdapter.logfile": "${workspaceFolder}/logs/cpputest-adapter.log",
 
     // CMake Tools settings - CTest統合を無効化
     "cmake.buildBeforeRun": false,
     "cmake.ctest.parallelJobs": 0
+
 }
