@@ -8,8 +8,8 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "clang-cl.exe",
-                "CMAKE_CXX_COMPILER": "clang-cl.exe",
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             },
             "condition": {
@@ -28,7 +28,7 @@
             },
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_CXX_FLAGS": "/EHsc /W4"
+                "CMAKE_CXX_FLAGS": "/EHsc /W4 /utf-8"
             }
         },
         {
@@ -46,7 +46,7 @@
         }
     ],
     
-      "buildPresets": [
+    "buildPresets": [
     {
       "name": "x64-debug",
       "configurePreset": "x64-debug"

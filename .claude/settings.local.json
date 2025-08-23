@@ -24,7 +24,9 @@
       "mcp__serena__create_text_file",
       "WebFetch(domain:cpputest.github.io)",
       "mcp__serena__replace_regex",
-      "Bash(ctest:*)"
+      "Bash(ctest:*)",
+      "Bash(xxd:*)",
+      "Bash(cat:*)"
     ],
     "deny": []
   },

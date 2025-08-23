@@ -70,4 +70,3 @@ else()
              COMMAND CppUtilities_tests -sg CppUtilitiesBasicTests -sn OutputTest)
 
    endif()
-   
