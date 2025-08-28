@@ -54,6 +54,44 @@
             "group": "build",
             "dependsOn": "Configure Debug",
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Generate Ninja Debug compile_commands.json",
+            "type": "cmake",
+            "command": "configure",
+            "preset": "ninja-debug",
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Generate Ninja Release compile_commands.json",
+            "type": "cmake",
+            "command": "configure",
+            "preset": "ninja-release",
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Copy Debug compile_commands.json",
+            "type": "shell",
+            "command": "copy",
+            "args": ["out\\build\\ninja-debug\\compile_commands.json", "."],
+            "group": "build",
+            "dependsOn": "Generate Ninja Debug compile_commands.json",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Copy Release compile_commands.json",
+            "type": "shell",
+            "command": "copy",
+            "args": ["out\\build\\ninja-release\\compile_commands.json", "."],
+            "group": "build",
+            "dependsOn": "Generate Ninja Release compile_commands.json",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
         }
     ]
 }

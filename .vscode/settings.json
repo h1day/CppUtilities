@@ -6,7 +6,7 @@
     "C_Cpp.intelliSenseEngine": "disabled",
     "clangd.path": "clangd.exe",
     "clangd.arguments": [
-        "--compile-commands-dir=out/build/x64-debug",
+        "--compile-commands-dir=out/build/ninja-debug",
         "--clang-tidy",
         "--header-insertion=iwyu",
         "--completion-style=detailed"

@@ -29,11 +29,47 @@ VS Codeは必ず「x64 Native Tools Command Prompt for VS 2022」から起動し
 code "C:\work\CppUtilities"
 ```
 
+#### インストール
+必要なツールをインストール：
+
+```bash
+# ReSharper コマンドラインツール
+dotnet tool install -g JetBrains.ReSharper.GlobalTools 
+```
+
 #### VS Code拡張機能
 以下の拡張機能をインストール：
 - C/C++ (Microsoft)
 - CMake Tools (Microsoft)
 - CppUTest Test Adapter (Benjamin Neumann) - テスト実行・デバッグ用
+- SARIF Viewer (Microsoft) - ReSharper CLI解析結果の表示用
+
+### CMakeプリセット構成
+このプロジェクトは2つのジェネレーターを使い分けています：
+
+#### Visual Studio 2022ジェネレーター（メインビルド）
+- **x64-debug**: デバッグビルド用
+- **x64-release**: リリースビルド用
+- 用途: 実際のビルド、Visual Studio IDE統合、ReSharper CLI対応
+
+#### Ninjaジェネレーター（IntelliSense用）
+- **ninja-debug**: デバッグ設定でcompile_commands.json生成用
+- **ninja-release**: リリース設定でcompile_commands.json生成用
+- 用途: VS CodeのIntelliSense、clang-tidy等のツール連携
+
+#### 使用例
+```bash
+# メインビルド（Visual Studio 2022）
+cmake --preset x64-debug
+cmake --build out/build/x64-debug --config Debug
+
+# compile_commands.json生成（Ninja）
+cmake --preset ninja-debug
+copy out\build\ninja-debug\compile_commands.json .
+
+# ReSharper CLI解析
+jb inspectcode out/build/x64-debug/CppUtilities.sln -o="out/build/x64-debug/inspectcode.sarif"
+```
 
 #### ビルド手順
 1. VS Codeでプロジェクトフォルダを開く

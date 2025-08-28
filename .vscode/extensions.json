@@ -3,6 +3,8 @@
         "ms-vscode.cpptools",
         "ms-vscode.cmake-tools",
         "ms-vscode.cpptools-extension-pack",
-        "ms-vscode.vscode-json"
+        "ms-vscode.vscode-json",
+        "bneumann.cpputest-test-adapter",
+        "ms-sarif.sarif-viewer"
     ]
 }
