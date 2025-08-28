@@ -44,7 +44,7 @@
       "program": "${workspaceFolder}/out/build/x64-debug/tests/CppUtilities_tests.exe",
       "args": ["-g", "${input:testGroup}", "-n", "${input:testName}"],
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}/out/build/x64-debug/tests",
+      "cwd": "${workspaceFolder}",
       "environment": [],
       "console": "externalTerminal",
       "preLaunchTask": "Build Tests"
